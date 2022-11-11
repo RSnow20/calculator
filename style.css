@@ -70,4 +70,75 @@ select {
 
 /* --- General Styling --- */
 
+body {
+  background-color: hsl(0, 0%, 20%);
+  font-family: "Roboto", sans-serif;
+}
+
 /* --- Calculator --- */
+
+.calc-wrapper {
+  display: grid;
+  gap: 0.25rem;
+  grid-template-areas:
+    "calc-title calc-title"
+    "calc-screen calc-screen"
+    "calc-numbers calc-ops"
+    "calc-controls null";
+  grid-template-rows: auto;
+  grid-template-columns: 3fr 1fr;
+  width: 400px;
+  margin-inline: auto;
+}
+
+.calc-wrapper button {
+  background-color: hsl(240, 100%, 27%);
+  color: white;
+  border: 1px solid lightblue;
+  border-radius: 10px;
+  margin: 0.125rem;
+  cursor: pointer;
+}
+
+.calc-wrapper > .calc-title {
+  grid-area: calc-title;
+  margin-inline: auto;
+}
+
+.calc-title h1 {
+  color: white;
+  font-size: 2rem;
+  margin-top: 1rem;
+}
+.calc-wrapper > .calc-screen {
+  grid-area: calc-screen;
+  background-color: lightgray;
+  margin-inline: auto;
+  width: 350px;
+  height: 30px;
+  margin: 1rem;
+}
+
+.calc-wrapper > .calc-buttons-numbers {
+  display: grid;
+  grid-area: calc-numbers;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+.calc-wrapper > .calc-buttons-ops {
+  display: grid;
+  grid-area: calc-ops;
+}
+.calc-wrapper > .calc-buttons-controls {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-area: calc-controls;
+}
+
+.calc-buttons-controls .equal {
+  background-color: hsl(240, 100%, 20%);
+  font-weight: 700;
+}
+
+.calc-buttons-controls .clear {
+  background-color: hsl(0, 100%, 20%);
+}
