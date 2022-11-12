@@ -95,12 +95,13 @@ body {
   background-color: hsl(240, 100%, 27%);
   color: white;
   border: 1px solid lightblue;
+  font-size: 1.25rem;
   border-radius: 10px;
   margin: 0.125rem;
   cursor: pointer;
 }
 
-.calc-wrapper > .calc-title {
+.calc-title {
   grid-area: calc-title;
   margin-inline: auto;
 }
@@ -110,25 +111,32 @@ body {
   font-size: 2rem;
   margin-top: 1rem;
 }
-.calc-wrapper > .calc-screen {
+.calc-screen {
   grid-area: calc-screen;
   background-color: lightgray;
   margin-inline: auto;
   width: 350px;
-  height: 30px;
+  height: 3rem;
+  padding: 0.25rem 0.5rem;
   margin: 1rem;
 }
 
-.calc-wrapper > .calc-buttons-numbers {
+.calc-screen p {
+  text-align: right;
+  vertical-align: middle;
+  font-size: 1.5rem;
+}
+
+.calc-buttons-numbers {
   display: grid;
   grid-area: calc-numbers;
   grid-template-columns: 1fr 1fr 1fr;
 }
-.calc-wrapper > .calc-buttons-ops {
+.calc-buttons-ops {
   display: grid;
   grid-area: calc-ops;
 }
-.calc-wrapper > .calc-buttons-controls {
+.calc-buttons-controls {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-area: calc-controls;
