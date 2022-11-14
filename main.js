@@ -1,4 +1,8 @@
 let displayValue = "";
+let numOne = "";
+let numTwo = "";
+let op = "";
+let clearDisplayBefore = false;
 
 function init() {
   let displayScreen = document.querySelector(".calc-screen");
@@ -15,8 +19,24 @@ function init() {
 
   buttonOps.forEach((button) => {
     button.addEventListener("click", function () {
-      // TODO need to figure out how to handle operation commands
+      setOp(button.getAttribute("id"));
     });
+  });
+
+  let buttonsControls = document.querySelectorAll(".calc-buttons-controls button");
+
+  buttonsControls.forEach((button) => {
+    if (button.getAttribute("id") == "equal") {
+      button.addEventListener("click", function () {
+        numTwo = displayValue;
+        equal(numOne, op);
+      });
+    } else if (button.getAttribute("id") == "clear") {
+      button.addEventListener("click", function () {
+        clearDisplay();
+        op = "";
+      });
+    }
   });
 }
 
@@ -38,6 +58,7 @@ function divide(x, y) {
 
 function operate(x, y, operation) {
   let answer = "";
+
   if (operation == "add") {
     answer = add(x, y);
   } else if (operation == "subtract") {
@@ -53,6 +74,19 @@ function operate(x, y, operation) {
   return answer;
 }
 
+function equal(x, operation) {
+  if (!displayValue || !operation) {
+    return;
+  }
+
+  let y = displayValue;
+
+  let answer = operate(x, y, operation);
+  setDisplay(answer);
+  op = "";
+  clearDisplayBefore = true;
+}
+
 function appendDisplay(num) {
   let displayScreen = document.querySelector(".calc-screen");
   let displayNumber = displayScreen.firstChild;
@@ -61,9 +95,39 @@ function appendDisplay(num) {
     return;
   } else if (num == 0 && displayNumber.innerHTML == 0) {
     return;
+  } else if (clearDisplayBefore) {
+    displayNumber.innerHTML = num;
+    displayValue = displayNumber.innerHTML;
+    clearDisplayBefore = false;
   } else {
     displayNumber.innerHTML += num;
+    displayValue = displayNumber.innerHTML;
   }
+}
+
+function clearDisplay() {
+  let displayScreen = document.querySelector(".calc-screen");
+  let displayNumber = displayScreen.firstChild;
+
+  displayNumber.innerHTML = "";
+  displayValue = displayNumber.innerHTML;
+}
+
+function setDisplay(number) {
+  let displayScreen = document.querySelector(".calc-screen");
+  let displayNumber = displayScreen.firstChild;
+
+  displayNumber.innerHTML = number;
+  displayValue = displayNumber.innerHTML;
+}
+
+function setOp(operation) {
+  numOne = displayValue;
+  op = operation;
+  console.log(op);
+  console.log(numOne);
+
+  clearDisplay();
 }
 
 init();
